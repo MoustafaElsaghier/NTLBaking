@@ -39,6 +39,10 @@ public class RecipeDetailFragment extends Fragment {
 
     public static ResponseModel model;
 
+    public void setRecipeInterFace(RecipeInterface recipeInterFace) {
+        this.recipeInterFace = recipeInterFace;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -54,8 +58,7 @@ public class RecipeDetailFragment extends Fragment {
             StringBuilder IngredientsData = new StringBuilder();
             mStepRecycler.setAdapter(stepsAdapter);
 //            ((RecipeDetails) getActivity()).setActionBarTittle(model.getName());
-
-            IngredientsData.append("\n\n");
+            IngredientsData.append("\n");
             for (IngredientsModel item : mIngredientsList) {
                 IngredientsData.append(item.getIngredient()).append(" : \t ")
                         .append(item.getQuantity()).append(" ")
@@ -67,4 +70,5 @@ public class RecipeDetailFragment extends Fragment {
 
         return v;
     }
+
 }

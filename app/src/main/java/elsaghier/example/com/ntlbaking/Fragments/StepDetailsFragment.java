@@ -74,7 +74,9 @@ public class StepDetailsFragment extends Fragment {
         if (savedInstanceState != null) {
             position = savedInstanceState.getLong(SELECTED_POSITION, C.TIME_UNSET);
         }
-//        pos = getArguments().getInt("pos");
+        Bundle b = getArguments();
+        System.out.println("SSS "+b);
+        pos = getArguments().getInt("pos");
 
         mVideoURL = RecipeDetailFragment.list.get(pos).getVideoURL();
         mDescription.setText(RecipeDetailFragment.list.get(pos).getDescription());
