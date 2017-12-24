@@ -1,4 +1,4 @@
-package elsaghier.example.com.ntlbaking;
+package elsaghier.example.com.ntlbaking.Activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +17,7 @@ import elsaghier.example.com.ntlbaking.ApiWork.ApiClient;
 import elsaghier.example.com.ntlbaking.ApiWork.ResponseInterFace;
 import elsaghier.example.com.ntlbaking.Models.IngredientsModel;
 import elsaghier.example.com.ntlbaking.Models.ResponseModel;
+import elsaghier.example.com.ntlbaking.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

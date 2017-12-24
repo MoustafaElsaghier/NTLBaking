@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.widget.RemoteViews;
 
-import elsaghier.example.com.ntlbaking.MainActivity;
+import elsaghier.example.com.ntlbaking.Activities.MainActivity;
 import elsaghier.example.com.ntlbaking.R;
 
 /**

@@ -12,7 +12,7 @@ import java.util.List;
 import elsaghier.example.com.ntlbaking.Models.IngredientsModel;
 import elsaghier.example.com.ntlbaking.R;
 
-import static elsaghier.example.com.ntlbaking.MainActivity.list;
+import static elsaghier.example.com.ntlbaking.Activities.MainActivity.list;
 
 /**
  * Created by ELSaghier on 12/12/2017.
