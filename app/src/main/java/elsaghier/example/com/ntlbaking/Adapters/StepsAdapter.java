@@ -1,6 +1,7 @@
 package elsaghier.example.com.ntlbaking.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,8 @@ import butterknife.ButterKnife;
 import elsaghier.example.com.ntlbaking.InterFaces.RecipeInterface;
 import elsaghier.example.com.ntlbaking.Models.StepModel;
 import elsaghier.example.com.ntlbaking.R;
+import elsaghier.example.com.ntlbaking.StepDetails;
+import elsaghier.example.com.ntlbaking.StepDetailsFragment;
 
 /**
  * Created by ELSaghier on 12/3/2017.
@@ -51,10 +54,10 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyViewHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                recipeInterface.setStepId(position);
-//                StepDetailsFragment.pos = position;
-//                Intent intent = new Intent(context, StepDetails.class);
-//                context.startActivity(intent);
+//                recipeInterface.setStepId(position);
+                StepDetailsFragment.pos = position;
+                Intent intent = new Intent(context, StepDetails.class);
+                context.startActivity(intent);
             }
         });
     }

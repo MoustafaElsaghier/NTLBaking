@@ -53,7 +53,7 @@ public class StepDetailsFragment extends Fragment {
 
     final String SELECTED_POSITION = "videoTime";
 
-    int pos;
+    public static int pos;
     long position;
 
     public StepDetailsFragment() {
@@ -74,7 +74,7 @@ public class StepDetailsFragment extends Fragment {
         if (savedInstanceState != null) {
             position = savedInstanceState.getLong(SELECTED_POSITION, C.TIME_UNSET);
         }
-        pos = getArguments().getInt("pos");
+//        pos = getArguments().getInt("pos");
 
         mVideoURL = RecipeDetailFragment.list.get(pos).getVideoURL();
         mDescription.setText(RecipeDetailFragment.list.get(pos).getDescription());
