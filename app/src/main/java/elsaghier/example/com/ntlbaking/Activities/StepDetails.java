@@ -18,12 +18,9 @@ public class StepDetails extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             Bundle b = getIntent().getExtras();
-            System.out.println("XXX" + b);
             StepDetailsFragment detailsFragment = new StepDetailsFragment();
             detailsFragment.setArguments(b);
-            getSupportFragmentManager().beginTransaction().replace(R.id.pane_2, detailsFragment).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment, detailsFragment).commit();
         }
-
     }
-
 }
