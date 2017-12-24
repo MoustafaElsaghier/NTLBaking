@@ -15,7 +15,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import elsaghier.example.com.ntlbaking.Adapters.RecipeAdapter;
 import elsaghier.example.com.ntlbaking.ApiWork.ApiClient;
-import elsaghier.example.com.ntlbaking.ApiWork.ResponseInterFace;
+import elsaghier.example.com.ntlbaking.InterFaces.ResponseInterFace;
 import elsaghier.example.com.ntlbaking.Models.IngredientsModel;
 import elsaghier.example.com.ntlbaking.Models.ResponseModel;
 import elsaghier.example.com.ntlbaking.R;
