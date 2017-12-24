@@ -3,6 +3,7 @@ package elsaghier.example.com.ntlbaking.Fragments;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,8 +77,6 @@ public class StepDetailsFragment extends Fragment {
         if (savedInstanceState != null) {
             position = savedInstanceState.getLong(SELECTED_POSITION, C.TIME_UNSET);
         }
-        Bundle b = getArguments();
-        System.out.println("SSS "+b);
         pos = getArguments().getInt("pos");
 
         mVideoURL = RecipeDetailFragment.list.get(pos).getVideoURL();
@@ -88,7 +87,7 @@ public class StepDetailsFragment extends Fragment {
                 pos = ((++pos) % RecipeDetailFragment.list.size()) + 1;
                 mVideoURL = RecipeDetailFragment.list.get(pos).getVideoURL();
                 mDescription.setText(RecipeDetailFragment.list.get(pos).getDescription());
-                //                getSupportActionBar().setTitle(RecipeDetails.list.get(pos).getShortDescription());
+                ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(RecipeDetailFragment.list.get(pos).getShortDescription());
                 releasePlayer();
                 initializePlayer(mVideoURL);
             }
@@ -99,7 +98,7 @@ public class StepDetailsFragment extends Fragment {
 
                 pos = ((++pos) % RecipeDetailFragment.list.size()) + 1;
                 mVideoURL = RecipeDetailFragment.list.get(pos).getVideoURL();
-                //                getSupportActionBar().setTitle(RecipeDetails.list.get(pos).getShortDescription());
+                ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(RecipeDetailFragment.list.get(pos).getShortDescription());
                 mDescription.setText(RecipeDetailFragment.list.get(pos).getDescription());
                 releasePlayer();
                 initializePlayer(mVideoURL);

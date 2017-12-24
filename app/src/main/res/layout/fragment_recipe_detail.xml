@@ -75,7 +75,7 @@
         android:layout_marginTop="4dp"
         android:text="@string/ingredients"
         android:textAlignment="center"
-        android:textSize="24sp"
+        android:textSize="@dimen/ingrediantTextSize"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
