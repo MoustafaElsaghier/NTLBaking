@@ -14,9 +14,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import elsaghier.example.com.ntlbaking.InterFaces.RecipeInterface;
 import elsaghier.example.com.ntlbaking.Models.StepModel;
 import elsaghier.example.com.ntlbaking.R;
-import elsaghier.example.com.ntlbaking.RecipeInterface;
 
 /**
  * Created by ELSaghier on 12/3/2017.

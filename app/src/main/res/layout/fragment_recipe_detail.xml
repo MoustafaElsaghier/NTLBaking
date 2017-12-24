@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="elsaghier.example.com.ntlbaking.RecipeDetail"
+    tools:context="elsaghier.example.com.ntlbaking.Activities.RecipeDetail"
     tools:layout_editor_absoluteY="81dp"
     android:id="@+id/main"
     tools:showIn="@layout/activity_recipe_detail">

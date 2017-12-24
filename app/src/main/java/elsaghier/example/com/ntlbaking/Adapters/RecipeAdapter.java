@@ -1,6 +1,7 @@
 package elsaghier.example.com.ntlbaking.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import elsaghier.example.com.ntlbaking.Activities.RecipeDetail;
+import elsaghier.example.com.ntlbaking.Fragments.RecipeDetailFragment;
 import elsaghier.example.com.ntlbaking.Models.ResponseModel;
 import elsaghier.example.com.ntlbaking.R;
 
@@ -45,9 +48,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                RecipeDetailsFragment.model = model;
-//                Intent intent = new Intent(context, RecipeDetails.class);
-//                context.startActivity(intent);
+                RecipeDetailFragment.model = model;
+                Intent intent = new Intent(context, RecipeDetail.class);
+                context.startActivity(intent);
             }
         });
     }
