@@ -36,6 +36,8 @@ import elsaghier.example.com.ntlbaking.R;
  * A placeholder fragment containing a simple view.
  */
 public class StepDetailsFragment extends Fragment {
+    public static final String ARG_ITEM_ID = "item_id";
+
 
     @BindView(R.id.step_description)
     TextView mDescription;

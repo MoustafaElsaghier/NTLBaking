@@ -15,13 +15,13 @@ public class StepDetails extends AppCompatActivity {
         setContentView(R.layout.activity_step_details);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Bundle b = getIntent().getExtras();
 
-        System.out.println("XXX" +b);
         if (savedInstanceState == null) {
+            Bundle b = getIntent().getExtras();
+            System.out.println("XXX" + b);
             StepDetailsFragment detailsFragment = new StepDetailsFragment();
             detailsFragment.setArguments(b);
-            getSupportFragmentManager().beginTransaction().replace(R.id.containerItem, detailsFragment).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.pane_2, detailsFragment).commit();
         }
 
     }

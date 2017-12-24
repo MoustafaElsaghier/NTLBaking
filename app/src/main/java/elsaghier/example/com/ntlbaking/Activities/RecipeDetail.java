@@ -11,7 +11,7 @@ import elsaghier.example.com.ntlbaking.InterFaces.RecipeInterface;
 import elsaghier.example.com.ntlbaking.R;
 
 public class RecipeDetail extends AppCompatActivity implements RecipeInterface {
-    boolean isTablet;
+    private boolean isTablet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +39,7 @@ public class RecipeDetail extends AppCompatActivity implements RecipeInterface {
         } else {
             //single
             Intent intent = new Intent(this, StepDetails.class);
-            Bundle b = new Bundle();
-            b.putInt("pos",id);
-            intent.putExtra("pos",b);
+            intent.putExtra("pos", id);
             startActivity(intent);
         }
     }
