@@ -86,7 +86,8 @@ public class StepDetailsFragment extends Fragment {
             mNext.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    pos = ((++pos) % RecipeDetailFragment.list.size()) + 1;
+
+                    pos = ((++pos) % RecipeDetailFragment.list.size());
                     mVideoURL = RecipeDetailFragment.list.get(pos).getVideoURL();
                     mDescription.setText(RecipeDetailFragment.list.get(pos).getDescription());
                     ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(RecipeDetailFragment.list.get(pos).getShortDescription());
@@ -98,7 +99,9 @@ public class StepDetailsFragment extends Fragment {
             mPrev.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    pos = ((++pos) % RecipeDetailFragment.list.size()) + 1;
+
+
+                    pos = ((--pos) % RecipeDetailFragment.list.size()) + 1;
                     mVideoURL = RecipeDetailFragment.list.get(pos).getVideoURL();
                     ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(RecipeDetailFragment.list.get(pos).getShortDescription());
                     mDescription.setText(RecipeDetailFragment.list.get(pos).getDescription());
@@ -149,6 +152,7 @@ public class StepDetailsFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        mVideoURL = RecipeDetailFragment.list.get(pos).getVideoURL();
         initializePlayer(mVideoURL);
     }
 
