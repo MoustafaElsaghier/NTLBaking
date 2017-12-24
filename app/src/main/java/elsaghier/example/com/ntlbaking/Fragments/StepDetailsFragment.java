@@ -71,45 +71,51 @@ public class StepDetailsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        position = C.TIME_UNSET;
         View v = inflater.inflate(R.layout.fragment_step_details, container, false);
         ButterKnife.bind(this, v);
-        position = C.TIME_UNSET;
         if (savedInstanceState != null) {
             position = savedInstanceState.getLong(SELECTED_POSITION, C.TIME_UNSET);
         }
-        pos = getArguments().getInt("pos");
+        if (getArguments() != null) {
+            pos = getArguments().getInt("pos");
+            mVideoURL = RecipeDetailFragment.list.get(pos).getVideoURL();
+            mDescription.setText(RecipeDetailFragment.list.get(pos).getDescription());
 
-        mVideoURL = RecipeDetailFragment.list.get(pos).getVideoURL();
-        mDescription.setText(RecipeDetailFragment.list.get(pos).getDescription());
-        mNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                pos = ((++pos) % RecipeDetailFragment.list.size()) + 1;
-                mVideoURL = RecipeDetailFragment.list.get(pos).getVideoURL();
-                mDescription.setText(RecipeDetailFragment.list.get(pos).getDescription());
-                ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(RecipeDetailFragment.list.get(pos).getShortDescription());
-                releasePlayer();
-                initializePlayer(mVideoURL);
-            }
-        });
-        mPrev.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                pos = ((++pos) % RecipeDetailFragment.list.size()) + 1;
-                mVideoURL = RecipeDetailFragment.list.get(pos).getVideoURL();
-                ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(RecipeDetailFragment.list.get(pos).getShortDescription());
-                mDescription.setText(RecipeDetailFragment.list.get(pos).getDescription());
-                releasePlayer();
-                initializePlayer(mVideoURL);
-            }
-        });
-
-        bandwidthMeter = new DefaultBandwidthMeter();
-        mediaDataSourceFactory = new DefaultDataSourceFactory(getContext(), Util.getUserAgent(getContext(), "mediaPlayerSample"), (TransferListener<? super DataSource>) bandwidthMeter);
+            // Next icon click
+            mNext.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    pos = ((++pos) % RecipeDetailFragment.list.size()) + 1;
+                    mVideoURL = RecipeDetailFragment.list.get(pos).getVideoURL();
+                    mDescription.setText(RecipeDetailFragment.list.get(pos).getDescription());
+                    ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(RecipeDetailFragment.list.get(pos).getShortDescription());
+                    releasePlayer();
+                    initializePlayer(mVideoURL);
+                }
+            });
+            // previous icon click
+            mPrev.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    pos = ((++pos) % RecipeDetailFragment.list.size()) + 1;
+                    mVideoURL = RecipeDetailFragment.list.get(pos).getVideoURL();
+                    ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(RecipeDetailFragment.list.get(pos).getShortDescription());
+                    mDescription.setText(RecipeDetailFragment.list.get(pos).getDescription());
+                    releasePlayer();
+                    initializePlayer(mVideoURL);
+                }
+            });
+            mExoPlayerViewInit();
+        }
         return v;
     }
 
+    private void mExoPlayerViewInit() {
+        bandwidthMeter = new DefaultBandwidthMeter();
+        mediaDataSourceFactory = new DefaultDataSourceFactory(getContext(), Util.getUserAgent(getContext(), "mediaPlayerSample"), (TransferListener<? super DataSource>) bandwidthMeter);
+
+    }
 
     private void initializePlayer(String videoURL) {
         if (mExoPlayer == null) {

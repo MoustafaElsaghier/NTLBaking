@@ -6,6 +6,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,12 +59,14 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<List<ResponseModel>> call, Response<List<ResponseModel>> response) {
                 list = response.body();
                 recipeAdapter = new RecipeAdapter(MainActivity.this, list);
+                Toast.makeText(MainActivity.this, "ok", Toast.LENGTH_SHORT).show();
                 mRecipeRecycler.setAdapter(recipeAdapter);
             }
 
             @Override
             public void onFailure(Call<List<ResponseModel>> call, Throwable t) {
-                System.out.println(t.getCause());
+                System.out.println(t.getCause()+"FFFFFFFF");
+                Toast.makeText(MainActivity.this, "no", Toast.LENGTH_SHORT).show();
             }
         });
     }

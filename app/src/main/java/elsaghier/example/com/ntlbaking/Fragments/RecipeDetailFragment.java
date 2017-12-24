@@ -49,24 +49,25 @@ public class RecipeDetailFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_recipe_detail, container, false);
 //        model = (ResponseModel) getArguments().get("model");
         ButterKnife.bind(this, v);
-        if (!model.getName().equals("")) {
-            List<IngredientsModel> mIngredientsList = model.getIngredients();
-            recyclerViewLayoutManager = new LinearLayoutManager(getContext());
-            mStepRecycler.setLayoutManager(recyclerViewLayoutManager);
-            list = model.getSteps();
-            stepsAdapter = new StepsAdapter(getContext(), list, recipeInterFace);
-            StringBuilder IngredientsData = new StringBuilder();
-            mStepRecycler.setAdapter(stepsAdapter);
+        if (model != null)
+            if (!model.getName().equals("")) {
+                List<IngredientsModel> mIngredientsList = model.getIngredients();
+                recyclerViewLayoutManager = new LinearLayoutManager(getContext());
+                mStepRecycler.setLayoutManager(recyclerViewLayoutManager);
+                list = model.getSteps();
+                stepsAdapter = new StepsAdapter(getContext(), list, recipeInterFace);
+                StringBuilder IngredientsData = new StringBuilder();
+                mStepRecycler.setAdapter(stepsAdapter);
 //            ((RecipeDetails) getActivity()).setActionBarTittle(model.getName());
-            IngredientsData.append("\n");
-            for (IngredientsModel item : mIngredientsList) {
-                IngredientsData.append(item.getIngredient()).append(" : \t ")
-                        .append(item.getQuantity()).append(" ")
-                        .append(item.getMeasure()).
-                        append("\n\n");
+                IngredientsData.append("\n");
+                for (IngredientsModel item : mIngredientsList) {
+                    IngredientsData.append(item.getIngredient()).append(" : \t ")
+                            .append(item.getQuantity()).append(" ")
+                            .append(item.getMeasure()).
+                            append("\n\n");
+                }
+                mIngredients.setText(IngredientsData.toString());
             }
-            mIngredients.setText(IngredientsData.toString());
-        }
 
         return v;
     }
