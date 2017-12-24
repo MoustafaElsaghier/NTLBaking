@@ -1,4 +1,4 @@
-package elsaghier.example.com.ntlbaking;
+package elsaghier.example.com.ntlbaking.Fragments;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -30,7 +30,7 @@ import com.google.android.exoplayer2.util.Util;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import elsaghier.example.com.ntlbaking.Fragments.RecipeDetailFragment;
+import elsaghier.example.com.ntlbaking.R;
 
 /**
  * A placeholder fragment containing a simple view.

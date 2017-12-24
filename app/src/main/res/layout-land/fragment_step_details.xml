@@ -31,7 +31,7 @@
             android:layout_marginTop="16dp"
             android:drawableStart="@drawable/left"
             android:padding="8dp"
-            android:text="Previous "
+            android:text="Previous"
             android:textColor="@android:color/black"
             android:textSize="20sp"
             android:textStyle="bold"

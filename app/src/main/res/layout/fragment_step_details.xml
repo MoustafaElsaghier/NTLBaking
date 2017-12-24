@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="elsaghier.example.com.ntlbaking.StepDetails"
+    tools:context="elsaghier.example.com.ntlbaking.Activities.StepDetails"
     tools:showIn="@layout/activity_step_details">
 
     <com.google.android.exoplayer2.ui.SimpleExoPlayerView

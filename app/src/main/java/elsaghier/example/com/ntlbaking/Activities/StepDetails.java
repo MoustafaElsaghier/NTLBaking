@@ -1,8 +1,10 @@
-package elsaghier.example.com.ntlbaking;
+package elsaghier.example.com.ntlbaking.Activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+
+import elsaghier.example.com.ntlbaking.R;
 
 public class StepDetails extends AppCompatActivity {
 

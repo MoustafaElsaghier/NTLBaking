@@ -18,8 +18,8 @@ import butterknife.ButterKnife;
 import elsaghier.example.com.ntlbaking.InterFaces.RecipeInterface;
 import elsaghier.example.com.ntlbaking.Models.StepModel;
 import elsaghier.example.com.ntlbaking.R;
-import elsaghier.example.com.ntlbaking.StepDetails;
-import elsaghier.example.com.ntlbaking.StepDetailsFragment;
+import elsaghier.example.com.ntlbaking.Activities.StepDetails;
+import elsaghier.example.com.ntlbaking.Fragments.StepDetailsFragment;
 
 /**
  * Created by ELSaghier on 12/3/2017.
