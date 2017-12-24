@@ -20,7 +20,7 @@ public class StepDetails extends AppCompatActivity {
             Bundle b = getIntent().getExtras();
             StepDetailsFragment detailsFragment = new StepDetailsFragment();
             detailsFragment.setArguments(b);
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment, detailsFragment).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.pane_2, detailsFragment).commit();
         }
     }
 }

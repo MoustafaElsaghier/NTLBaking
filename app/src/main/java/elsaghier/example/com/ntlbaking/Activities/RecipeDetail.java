@@ -35,7 +35,7 @@ public class RecipeDetail extends AppCompatActivity implements RecipeInterface {
             Bundle b = new Bundle();
             b.putInt("pos", id);
             stepDetailsFragment.setArguments(b);
-            getSupportFragmentManager().beginTransaction().replace(R.id.pane_2, stepDetailsFragment).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.pane_2  , stepDetailsFragment).commit();
         } else {
             //single
             Intent intent = new Intent(this, StepDetails.class);
