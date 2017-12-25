@@ -7,61 +7,65 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.widget.RemoteViews;
+import android.widget.Toast;
 
-import elsaghier.example.com.ntlbaking.Activities.MainActivity;
+import java.util.Objects;
+
 import elsaghier.example.com.ntlbaking.R;
 
 /**
  * Implementation of App Widget functionality.
  */
 public class IngredientWidget extends AppWidgetProvider {
+    public static final String ACTION_TOAST = "com.dharmangsoni.widgets.ACTION_TOAST";
+    public static final String EXTRA_STRING = "com.dharmangsoni.widgets.EXTRA_STRING";
+
 
     public static String EXTRA_WORD = "elsaghier.example.com.bakingappntl.BakingWidgetClasses";
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        if (Objects.equals(intent.getAction(), ACTION_TOAST)) {
+            String item = intent.getExtras().getString(EXTRA_STRING);
+            Toast.makeText(context, item, Toast.LENGTH_LONG).show();
+        }
         super.onReceive(context, intent);
-    }
-
-    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
-                                int appWidgetId) {
-
-        CharSequence widgetText = context.getString(R.string.appwidget_text);
-        // Construct the RemoteViews object
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.ingredient_widget);
-        views.setTextViewText(R.id.appwidget_text, widgetText);
-
-        // Instruct the widget manager to update the widget
-        appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        // There may be multiple widgets active, so update all of them
-        for (int appWidgetId : appWidgetIds) {
-            Intent svcIntent = new Intent(context, WidgetService.class);
+        for (int widgetId : appWidgetIds) {
+            RemoteViews mView = initViews(context, appWidgetManager, widgetId);
 
-            svcIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-            svcIntent.setData(Uri.parse(svcIntent.toUri(Intent.URI_INTENT_SCHEME)));
-
-            RemoteViews widget = new RemoteViews(context.getPackageName(),
-                    R.layout.ingredient_widget);
-
-            widget.setRemoteAdapter(appWidgetId, R.id.appwidget_list,
-                    svcIntent);
-
-            Intent clickIntent = new Intent(context, MainActivity.class);
-            PendingIntent clickPI = PendingIntent
-                    .getActivity(context, 0,
-                            clickIntent,
+            // Adding collection list item handler
+            final Intent onItemClick = new Intent(context, IngredientWidget.class);
+            onItemClick.setAction(ACTION_TOAST);
+            onItemClick.setData(Uri.parse(onItemClick
+                    .toUri(Intent.URI_INTENT_SCHEME)));
+            final PendingIntent onClickPendingIntent = PendingIntent
+                    .getBroadcast(context, 0, onItemClick,
                             PendingIntent.FLAG_UPDATE_CURRENT);
+            mView.setPendingIntentTemplate(R.id.appwidget_list,
+                    onClickPendingIntent);
 
-            widget.setPendingIntentTemplate(R.id.appwidget_list, clickPI);
-
-            appWidgetManager.updateAppWidget(appWidgetId, widget);
+            appWidgetManager.updateAppWidget(widgetId, mView);
         }
-
         super.onUpdate(context, appWidgetManager, appWidgetIds);
+    }
+
+    private RemoteViews initViews(Context context,
+                                  AppWidgetManager widgetManager, int widgetId) {
+
+        RemoteViews mView = new RemoteViews(context.getPackageName(),
+                R.layout.ingredient_widget);
+
+        Intent intent = new Intent(context, WidgetService.class);
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetId);
+
+        intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
+        mView.setRemoteAdapter(widgetId, R.id.appwidget_list, intent);
+
+        return mView;
     }
 
 }

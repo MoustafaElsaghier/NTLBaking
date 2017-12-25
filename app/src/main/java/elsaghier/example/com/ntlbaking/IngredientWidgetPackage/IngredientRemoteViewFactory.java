@@ -3,6 +3,7 @@ package elsaghier.example.com.ntlbaking.IngredientWidgetPackage;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
@@ -59,15 +60,25 @@ public class IngredientRemoteViewFactory implements RemoteViewsService.RemoteVie
                     R.layout.widget_row);
 
             ingredients = list.get(i).getIngredients();
-            String rowData = ingredients.get(i).getIngredient() + "\n" +
-                    ingredients.get(i).getQuantity() + ingredients.get(i).getQuantity();
 
-            row.setTextViewText(R.id.Ingredient_item, rowData);
+            row.setTextViewText(R.id.Ingredient_item, list.get(i).getName());
 
-//            Intent intent = new Intent();
-//            intent.putExtra(IngredientWidget.EXTRA_WORD, ingredients.get(i));
-//
-//            row.setOnClickFillInIntent(R.id.Ingredient_item, intent);
+
+            String rowData = ingredients.get(i).getIngredient() +
+                    "\n" +
+                    ingredients.get(i).getQuantity() +
+                    ingredients.get(i).getQuantity();
+
+            final Intent fillInIntent = new Intent();
+
+            fillInIntent.setAction(IngredientWidget.ACTION_TOAST);
+
+            final Bundle bundle = new Bundle();
+            bundle.putString(IngredientWidget.EXTRA_STRING,
+                    rowData);
+
+            fillInIntent.putExtras(bundle);
+            row.setOnClickFillInIntent(android.R.id.text1, fillInIntent);
             return row;
         }
         return null;
