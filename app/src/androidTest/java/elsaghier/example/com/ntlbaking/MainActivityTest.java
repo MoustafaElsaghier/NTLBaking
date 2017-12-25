@@ -35,11 +35,9 @@ public class MainActivityTest {
 
     @Test
     public void recyclerClick() {
-//        onView(withId(R.id.recipe_list)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
         onView(withId(R.id.recipe_list))
                 .perform(RecyclerViewActions.actionOnItem(
                         hasDescendant(withText("Cheesecake")), click()));
-        onView(withId(R.id.Ingredients)).check(matches(withText("Ingredients"))).check(matches(isDisplayed()));
     }
 
 }

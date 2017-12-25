@@ -33,10 +33,10 @@ public class RecipeDetailTest {
         onView(withId(R.id.Ingredients)).check(matches(isDisplayed()));
     }
 
-    @Test
-    public void checkStepRecyclerAvailability() {
-        onView(withId(R.id.step_recyc)).check(matches(isDisplayed()));
-    }
+//    @Test
+//    public void checkStepRecyclerAvailability() {
+//        onView(withId(R.id.step_recyc)).check(matches(isDisplayed()));
+//    }
 
     @Test
     public void checkStepItemImageAvailability() {

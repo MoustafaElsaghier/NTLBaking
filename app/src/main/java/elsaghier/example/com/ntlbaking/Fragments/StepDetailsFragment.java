@@ -115,7 +115,6 @@ public class StepDetailsFragment extends Fragment {
             });
             mExoPlayerViewInit();
             initializePlayer(mVideoURL);
-            playWhenReady = mExoPlayer.getPlayWhenReady();
         }
         return v;
     }
