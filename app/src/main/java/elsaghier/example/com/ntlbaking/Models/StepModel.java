@@ -9,8 +9,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class StepModel implements Serializable
-{
+public class StepModel implements Serializable {
 
     @SerializedName("id")
     @Expose

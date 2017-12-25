@@ -9,8 +9,7 @@ import java.util.List;
 /**
  * Created by ELSaghier on 12/2/2017.
  */
-public class ResponseModel implements Serializable
-{
+public class ResponseModel implements Serializable {
 
     @SerializedName("id")
     @Expose

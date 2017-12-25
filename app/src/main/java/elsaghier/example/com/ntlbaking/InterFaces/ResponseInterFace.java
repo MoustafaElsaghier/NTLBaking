@@ -13,6 +13,4 @@ import retrofit2.http.GET;
 public interface ResponseInterFace {
     @GET("baking.json")
     Call<List<ResponseModel>> getRecipes();
-
-
 }

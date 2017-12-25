@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     retrofit2.Call<List<ResponseModel>> call;
     boolean isTablet;
     public static ArrayList<IngredientsModel> ingredients;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
         init();
 
     }
-    private void init(){
+
+    private void init() {
         ButterKnife.bind(this);
         isTablet = getResources().getBoolean(R.bool.isTab);
 
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<ResponseModel>> call, Throwable t) {
-                System.out.println(t.getCause()+"FFFFFFFF");
+                System.out.println(t.getCause() + "FFFFFFFF");
                 Toast.makeText(MainActivity.this, "no", Toast.LENGTH_SHORT).show();
             }
         });
