@@ -18,6 +18,11 @@ public class IngredientWidget extends AppWidgetProvider {
 
     public static String EXTRA_WORD = "elsaghier.example.com.bakingappntl.BakingWidgetClasses";
 
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        super.onReceive(context, intent);
+    }
+
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
@@ -59,14 +64,5 @@ public class IngredientWidget extends AppWidgetProvider {
         super.onUpdate(context, appWidgetManager, appWidgetIds);
     }
 
-    @Override
-    public void onEnabled(Context context) {
-        // Enter relevant functionality for when the first widget is created
-    }
-
-    @Override
-    public void onDisabled(Context context) {
-        // Enter relevant functionality for when the last widget is disabled
-    }
 }
 

@@ -19,9 +19,9 @@ import static elsaghier.example.com.ntlbaking.Activities.MainActivity.list;
  */
 
 public class IngredientRemoteViewFactory implements RemoteViewsService.RemoteViewsFactory {
-    private Context mContext;
+    private Context mContext = null;
     private int appWidgetId;
-    private List<IngredientsModel> ingrediants = new ArrayList<>();
+    private List<IngredientsModel> ingredients = new ArrayList<>();
 
     IngredientRemoteViewFactory(Context mContext, Intent intent) {
         this.mContext = mContext;
@@ -32,7 +32,7 @@ public class IngredientRemoteViewFactory implements RemoteViewsService.RemoteVie
     @Override
     public void onCreate() {
         if (mContext != null && list != null)
-            ingrediants = list.get(0).getIngredients();
+            ingredients = list.get(0).getIngredients();
     }
 
     @Override
@@ -46,9 +46,9 @@ public class IngredientRemoteViewFactory implements RemoteViewsService.RemoteVie
 
     @Override
     public int getCount() {
-        if (ingrediants == null)
+        if (ingredients == null)
             return 0;
-        return ingrediants.size();
+        return ingredients.size();
     }
 
     @Override
@@ -56,21 +56,20 @@ public class IngredientRemoteViewFactory implements RemoteViewsService.RemoteVie
 
         if (list != null) {
             RemoteViews row = new RemoteViews(mContext.getPackageName(),
-                    R.layout.ingredient_widget);
+                    R.layout.widget_row);
 
-            ingrediants = list.get(i).getIngredients();
-            String rowData = ingrediants.get(i).getIngredient() + "\n" +
-                    ingrediants.get(i).getQuantity() + ingrediants.get(i).getQuantity();
+            ingredients = list.get(i).getIngredients();
+            String rowData = ingredients.get(i).getIngredient() + "\n" +
+                    ingredients.get(i).getQuantity() + ingredients.get(i).getQuantity();
 
             row.setTextViewText(R.id.Ingredient_item, rowData);
 
-            Intent intent = new Intent();
-            intent.putExtra(IngredientWidget.EXTRA_WORD, ingrediants.get(i));
-
-            row.setOnClickFillInIntent(R.id.Ingredient_item, intent);
+//            Intent intent = new Intent();
+//            intent.putExtra(IngredientWidget.EXTRA_WORD, ingredients.get(i));
+//
+//            row.setOnClickFillInIntent(R.id.Ingredient_item, intent);
             return row;
-        }else
-            System.out.println("Error");
+        }
         return null;
     }
 

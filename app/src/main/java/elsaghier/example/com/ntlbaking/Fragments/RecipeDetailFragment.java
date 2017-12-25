@@ -34,6 +34,12 @@ public class RecipeDetailFragment extends Fragment {
     RecyclerView.LayoutManager recyclerViewLayoutManager;
     StepsAdapter stepsAdapter;
 
+    public static RecipeDetailFragment newInstance(RecipeInterface recipeInterFace) {
+        RecipeDetailFragment f = new RecipeDetailFragment();
+        f.setRecipeInterFace(recipeInterFace);
+        return f;
+    }
+
     public RecipeDetailFragment() {
     }
 

@@ -21,8 +21,7 @@ public class RecipeDetail extends AppCompatActivity implements RecipeInterface {
         setSupportActionBar(toolbar);
         isTablet = getResources().getBoolean(R.bool.isTab);
         if (savedInstanceState == null) {
-            RecipeDetailFragment detailFragment = new RecipeDetailFragment();
-            detailFragment.setRecipeInterFace(this);
+            RecipeDetailFragment detailFragment =  RecipeDetailFragment.newInstance(this);
             getSupportFragmentManager().beginTransaction().replace(R.id.pane_1, detailFragment).commit();
         }
     }
