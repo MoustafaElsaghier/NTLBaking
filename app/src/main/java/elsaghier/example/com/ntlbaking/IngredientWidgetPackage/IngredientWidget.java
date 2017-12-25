@@ -17,8 +17,8 @@ import elsaghier.example.com.ntlbaking.R;
  * Implementation of App Widget functionality.
  */
 public class IngredientWidget extends AppWidgetProvider {
-    public static final String ACTION_TOAST = "com.dharmangsoni.widgets.ACTION_TOAST";
-    public static final String EXTRA_STRING = "com.dharmangsoni.widgets.EXTRA_STRING";
+    public static final String ACTION_TOAST = "elsaghier.example.com.ntlbaking.widgets.ACTION_TOAST";
+    public static final String EXTRA_STRING = "elsaghier.example.com.ntlbaking.widgets.EXTRA_STRING";
 
 
     public static String EXTRA_WORD = "elsaghier.example.com.bakingappntl.BakingWidgetClasses";
