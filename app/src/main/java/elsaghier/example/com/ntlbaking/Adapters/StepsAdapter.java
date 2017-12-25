@@ -18,6 +18,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import elsaghier.example.com.ntlbaking.Activities.StepDetails;
+import elsaghier.example.com.ntlbaking.Fragments.RecipeDetailFragment;
 import elsaghier.example.com.ntlbaking.Fragments.StepDetailsFragment;
 import elsaghier.example.com.ntlbaking.Models.StepModel;
 import elsaghier.example.com.ntlbaking.R;
@@ -48,7 +49,7 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyViewHolder
     }
 
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final StepModel model = mSteps.get(position);
         holder.setRecipeImage(model.getThumbnailURL());
         holder.setRecipeName(model.getShortDescription());
@@ -73,6 +74,7 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyViewHolder
                     intent.putExtra("pos", holder.getAdapterPosition());
                     context.startActivity(intent);
                 }
+                RecipeDetailFragment.moveTo = position;
             }
         });
     }

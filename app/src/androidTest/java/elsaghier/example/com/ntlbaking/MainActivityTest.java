@@ -13,8 +13,10 @@ import elsaghier.example.com.ntlbaking.Activities.MainActivity;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 /**
  * Created by ELSaghier on 12/12/2017.
@@ -33,8 +35,11 @@ public class MainActivityTest {
 
     @Test
     public void recyclerClick() {
-        onView(withId(R.id.recipe_list)).perform(RecyclerViewActions.actionOnItemAtPosition(2, click()));
-        onView(withId(R.id.Ingredients)).check(matches(isDisplayed()));
+//        onView(withId(R.id.recipe_list)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+        onView(withId(R.id.recipe_list))
+                .perform(RecyclerViewActions.actionOnItem(
+                        hasDescendant(withText("Cheesecake")), click()));
+        onView(withId(R.id.Ingredients)).check(matches(withText("Ingredients"))).check(matches(isDisplayed()));
     }
 
 }

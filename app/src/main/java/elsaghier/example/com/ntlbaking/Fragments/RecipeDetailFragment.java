@@ -31,6 +31,7 @@ public class RecipeDetailFragment extends Fragment {
     public static List<StepModel> list;
     RecipeInterface recipeInterFace;
     boolean isTablet;
+    public static int moveTo;
 
     RecyclerView.LayoutManager recyclerViewLayoutManager;
     StepsAdapter stepsAdapter;
@@ -48,6 +49,12 @@ public class RecipeDetailFragment extends Fragment {
 
     public void setRecipeInterFace(RecipeInterface recipeInterFace) {
         this.recipeInterFace = recipeInterFace;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mStepRecycler.smoothScrollToPosition(moveTo);
     }
 
     @Override
