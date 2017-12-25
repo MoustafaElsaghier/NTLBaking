@@ -30,6 +30,7 @@ public class RecipeDetailFragment extends Fragment {
     RecyclerView mStepRecycler;
     public static List<StepModel> list;
     RecipeInterface recipeInterFace;
+    boolean isTablet;
 
     RecyclerView.LayoutManager recyclerViewLayoutManager;
     StepsAdapter stepsAdapter;
@@ -57,11 +58,12 @@ public class RecipeDetailFragment extends Fragment {
         ButterKnife.bind(this, v);
         if (model != null)
             if (!model.getName().equals("")) {
+                isTablet = getResources().getBoolean(R.bool.isTab);
                 List<IngredientsModel> mIngredientsList = model.getIngredients();
                 recyclerViewLayoutManager = new LinearLayoutManager(getContext());
                 mStepRecycler.setLayoutManager(recyclerViewLayoutManager);
                 list = model.getSteps();
-                stepsAdapter = new StepsAdapter(getContext(), list, recipeInterFace);
+                stepsAdapter = new StepsAdapter(getContext(), list, isTablet);
                 StringBuilder IngredientsData = new StringBuilder();
                 mStepRecycler.setAdapter(stepsAdapter);
 //            ((RecipeDetails) getActivity()).setActionBarTittle(model.getName());

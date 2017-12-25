@@ -1,6 +1,9 @@
 package elsaghier.example.com.ntlbaking.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +17,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import elsaghier.example.com.ntlbaking.InterFaces.RecipeInterface;
+import elsaghier.example.com.ntlbaking.Activities.StepDetails;
+import elsaghier.example.com.ntlbaking.Fragments.StepDetailsFragment;
 import elsaghier.example.com.ntlbaking.Models.StepModel;
 import elsaghier.example.com.ntlbaking.R;
 
@@ -26,13 +30,14 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyViewHolder
 
     private List<StepModel> mSteps;
     private Context context;
-    private RecipeInterface recipeInterface;
+    //    private RecipeInterface recipeInterface;
+    private boolean isTablet;
 
 
-    public StepsAdapter(Context context, List<StepModel> mSteps, RecipeInterface recipeInterface) {
+    public StepsAdapter(Context context, List<StepModel> mSteps, Boolean isTablet) {
         this.mSteps = mSteps;
         this.context = context;
-        this.recipeInterface = recipeInterface;
+        this.isTablet = isTablet;
     }
 
     @Override
@@ -51,7 +56,23 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyViewHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                recipeInterface.setStepId(holder.getAdapterPosition());
+//                recipeInterface.setStepId(holder.getAdapterPosition());
+                if (isTablet) {
+                    // tablet
+                    StepDetailsFragment stepDetailsFragment = new StepDetailsFragment();
+                    Bundle b = new Bundle();
+                    b.putInt("pos", holder.getAdapterPosition());
+                    stepDetailsFragment.setArguments(b);
+                    ((AppCompatActivity) context).getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.pane_2, stepDetailsFragment)
+                            .commit();
+                } else {
+                    //single
+                    Intent intent = new Intent(context, StepDetails.class);
+                    intent.putExtra("pos", holder.getAdapterPosition());
+                    context.startActivity(intent);
+                }
             }
         });
     }
