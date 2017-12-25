@@ -2,7 +2,6 @@ package elsaghier.example.com.ntlbaking.Fragments;
 
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -69,7 +68,7 @@ public class StepDetailsFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putLong(SELECTED_POSITION, position);
-        outState.putBoolean(SELECTED_STATE, mExoPlayer.getPlayWhenReady());
+        outState.putBoolean(SELECTED_STATE, playWhenReady);
     }
 
     @Override
@@ -81,12 +80,12 @@ public class StepDetailsFragment extends Fragment {
         if (savedInstanceState != null) {
             position = savedInstanceState.getLong(SELECTED_POSITION, C.TIME_UNSET);
             playWhenReady = savedInstanceState.getBoolean(SELECTED_STATE);
+
         }
         if (getArguments() != null) {
             pos = getArguments().getInt("pos");
             mVideoURL = RecipeDetailFragment.list.get(pos).getVideoURL();
             mDescription.setText(RecipeDetailFragment.list.get(pos).getDescription());
-
             // Next icon click
             mNext.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -115,18 +114,20 @@ public class StepDetailsFragment extends Fragment {
                 }
             });
             mExoPlayerViewInit();
+            initializePlayer(mVideoURL);
+            playWhenReady = mExoPlayer.getPlayWhenReady();
         }
         return v;
     }
 
-    @Override
-    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
-        super.onViewStateRestored(savedInstanceState);
-        if (savedInstanceState != null) {
-            position = savedInstanceState.getLong(SELECTED_POSITION, C.TIME_UNSET);
-        }
-        playWhenReady = savedInstanceState.getBoolean(SELECTED_STATE);
-    }
+//    @Override
+//    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+//        super.onViewStateRestored(savedInstanceState);
+//        if (savedInstanceState != null) {
+//            position = savedInstanceState.getLong(SELECTED_POSITION, C.TIME_UNSET);
+//            playWhenReady = savedInstanceState.getBoolean(SELECTED_STATE);
+//        }
+//    }
 
     private void mExoPlayerViewInit() {
         bandwidthMeter = new DefaultBandwidthMeter();

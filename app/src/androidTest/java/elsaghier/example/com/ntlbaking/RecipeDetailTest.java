@@ -22,9 +22,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 @RunWith(AndroidJUnit4.class)
 public class RecipeDetailTest {
 
-    // when running this test it fails due to there is no object to
-    // get data from it when launch the activity
-    // so the test failed
+
 
     @Rule
     public ActivityTestRule<RecipeDetail> activityTestRule =

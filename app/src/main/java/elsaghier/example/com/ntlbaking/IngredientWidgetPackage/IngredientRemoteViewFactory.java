@@ -55,7 +55,7 @@ public class IngredientRemoteViewFactory implements RemoteViewsService.RemoteVie
     @Override
     public RemoteViews getViewAt(int i) {
 
-        if (list != null) {
+        if (list != null && i<list.size()) {
             RemoteViews row = new RemoteViews(mContext.getPackageName(),
                     R.layout.widget_row);
 

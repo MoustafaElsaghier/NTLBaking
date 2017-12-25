@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="elsaghier.example.com.ntlbaking">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -32,7 +30,9 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/ingredient_widget_info" />
+
         </receiver>
+
         <service
             android:name=".IngredientWidgetPackage.WidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
