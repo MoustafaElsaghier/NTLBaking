@@ -59,7 +59,7 @@ public class StepDetailsFragment extends Fragment {
     final String SELECTED_POSITION = "videoTime";
     final String SELECTED_STATE = "videoState";
     long position;
-    private boolean playWhenReady;
+    private boolean playWhenReady = true;
 
     public StepDetailsFragment() {
     }
@@ -119,15 +119,6 @@ public class StepDetailsFragment extends Fragment {
         }
         return v;
     }
-
-//    @Override
-//    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
-//        super.onViewStateRestored(savedInstanceState);
-//        if (savedInstanceState != null) {
-//            position = savedInstanceState.getLong(SELECTED_POSITION, C.TIME_UNSET);
-//            playWhenReady = savedInstanceState.getBoolean(SELECTED_STATE);
-//        }
-//    }
 
     private void mExoPlayerViewInit() {
         bandwidthMeter = new DefaultBandwidthMeter();
