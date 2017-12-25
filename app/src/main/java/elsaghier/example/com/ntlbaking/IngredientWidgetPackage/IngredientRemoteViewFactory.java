@@ -47,27 +47,26 @@ public class IngredientRemoteViewFactory implements RemoteViewsService.RemoteVie
 
     @Override
     public int getCount() {
-        if (ingredients == null)
+        if (list == null)
             return 0;
-        return ingredients.size();
+        return list.size();
     }
 
     @Override
     public RemoteViews getViewAt(int i) {
 
-        if (list != null && i<list.size()) {
+        if (list != null) {
             RemoteViews row = new RemoteViews(mContext.getPackageName(),
                     R.layout.widget_row);
 
             ingredients = list.get(i).getIngredients();
 
-            row.setTextViewText(R.id.Ingredient_item, list.get(i).getName());
-
-
             String rowData = ingredients.get(i).getIngredient() +
-                    "\n" +
-                    ingredients.get(i).getQuantity() +
-                    ingredients.get(i).getQuantity();
+                    "     " +
+                    ingredients.get(i).getQuantity() + "  " +
+                    ingredients.get(i).getMeasure();
+            row.setTextViewText(R.id.appwidget_text,"Ingredient");
+            row.setTextViewText(R.id.Ingredient_item, rowData);
 
             final Intent fillInIntent = new Intent();
 
