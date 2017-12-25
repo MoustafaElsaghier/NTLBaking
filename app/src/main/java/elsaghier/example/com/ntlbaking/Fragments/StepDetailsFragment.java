@@ -2,6 +2,7 @@ package elsaghier.example.com.ntlbaking.Fragments;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -52,12 +53,14 @@ public class StepDetailsFragment extends Fragment {
     String mVideoURL;
 
     private BandwidthMeter bandwidthMeter;
+    public static int pos;
+
     private DataSource.Factory mediaDataSourceFactory;
 
     final String SELECTED_POSITION = "videoTime";
-
-    public static int pos;
+    final String SELECTED_STATE = "videoState";
     long position;
+    private boolean playWhenReady;
 
     public StepDetailsFragment() {
     }
@@ -66,6 +69,7 @@ public class StepDetailsFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putLong(SELECTED_POSITION, position);
+        outState.putBoolean(SELECTED_STATE, mExoPlayer.getPlayWhenReady());
     }
 
     @Override
@@ -76,6 +80,7 @@ public class StepDetailsFragment extends Fragment {
         ButterKnife.bind(this, v);
         if (savedInstanceState != null) {
             position = savedInstanceState.getLong(SELECTED_POSITION, C.TIME_UNSET);
+            playWhenReady = savedInstanceState.getBoolean(SELECTED_STATE);
         }
         if (getArguments() != null) {
             pos = getArguments().getInt("pos");
@@ -114,6 +119,15 @@ public class StepDetailsFragment extends Fragment {
         return v;
     }
 
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        if (savedInstanceState != null) {
+            position = savedInstanceState.getLong(SELECTED_POSITION, C.TIME_UNSET);
+        }
+        playWhenReady = savedInstanceState.getBoolean(SELECTED_STATE);
+    }
+
     private void mExoPlayerViewInit() {
         bandwidthMeter = new DefaultBandwidthMeter();
         mediaDataSourceFactory = new DefaultDataSourceFactory(getContext(), Util.getUserAgent(getContext(), "mediaPlayerSample"), (TransferListener<? super DataSource>) bandwidthMeter);
@@ -131,7 +145,8 @@ public class StepDetailsFragment extends Fragment {
 
             mExoPlayerView.requestFocus();
             mExoPlayerView.setPlayer(mExoPlayer);
-            mExoPlayer.setPlayWhenReady(true);
+
+            mExoPlayer.setPlayWhenReady(playWhenReady);
 
             DefaultExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
 
