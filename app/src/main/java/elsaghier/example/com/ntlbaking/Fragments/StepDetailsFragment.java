@@ -68,7 +68,7 @@ public class StepDetailsFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putLong(SELECTED_POSITION, position);
-        outState.putBoolean(SELECTED_STATE, playWhenReady);
+        outState.putBoolean(SELECTED_STATE, mExoPlayer.getPlayWhenReady());
     }
 
     @Override
@@ -80,7 +80,6 @@ public class StepDetailsFragment extends Fragment {
         if (savedInstanceState != null) {
             position = savedInstanceState.getLong(SELECTED_POSITION, C.TIME_UNSET);
             playWhenReady = savedInstanceState.getBoolean(SELECTED_STATE);
-
         }
         if (getArguments() != null) {
             pos = getArguments().getInt("pos");
@@ -151,7 +150,7 @@ public class StepDetailsFragment extends Fragment {
     private void releasePlayer() {
         mExoPlayer.stop();
         mExoPlayer.release();
-        mExoPlayer = null;
+    //    mExoPlayer = null;
     }
 
 
