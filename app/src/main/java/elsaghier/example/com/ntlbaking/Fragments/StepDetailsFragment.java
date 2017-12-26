@@ -68,7 +68,7 @@ public class StepDetailsFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putLong(SELECTED_POSITION, position);
-        outState.putBoolean(SELECTED_STATE, mExoPlayer.getPlayWhenReady());
+        outState.putBoolean(SELECTED_STATE, playWhenReady);
     }
 
     @Override
@@ -150,7 +150,7 @@ public class StepDetailsFragment extends Fragment {
     private void releasePlayer() {
         mExoPlayer.stop();
         mExoPlayer.release();
-    //    mExoPlayer = null;
+        playWhenReady = mExoPlayer.getPlayWhenReady();
     }
 
 
