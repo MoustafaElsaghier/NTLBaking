@@ -6,6 +6,15 @@
     android:orientation="horizontal"
     tools:context="elsaghier.example.com.ntlbaking.Activities.RecipeDetail">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+
     <FrameLayout
         android:id="@+id/pane_1"
         android:layout_width="0dp"

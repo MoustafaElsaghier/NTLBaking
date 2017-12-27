@@ -17,7 +17,7 @@ public class RecipeDetail extends AppCompatActivity /*implements RecipeInterface
         setContentView(R.layout.activity_recipe_detail);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         if (savedInstanceState == null) {
             RecipeDetailFragment detailFragment = new RecipeDetailFragment();
             getSupportFragmentManager().beginTransaction().replace(R.id.pane_1, detailFragment).commit();
