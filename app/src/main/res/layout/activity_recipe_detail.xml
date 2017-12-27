@@ -7,9 +7,9 @@
     tools:context="elsaghier.example.com.ntlbaking.Activities.RecipeDetail">
 
     <LinearLayout
+        android:id="@+id/itemDetail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/itemDetail"
         android:orientation="vertical">
 
         <android.support.design.widget.AppBarLayout

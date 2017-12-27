@@ -23,6 +23,7 @@ public class RecipeDetail extends AppCompatActivity /*implements RecipeInterface
             getSupportFragmentManager().beginTransaction().replace(R.id.pane_1, detailFragment).commit();
         }
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

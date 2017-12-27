@@ -26,6 +26,7 @@ public class StepDetails extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().add(R.id.pane_2, detailsFragment).commit();
         }
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<ResponseModel>> call, Throwable t) {
                 System.out.println();
-                Log.e("NetworkFaild", t.getCause().toString());
+                Log.e("NetworkFailed", t.getCause().toString());
             }
         });
     }

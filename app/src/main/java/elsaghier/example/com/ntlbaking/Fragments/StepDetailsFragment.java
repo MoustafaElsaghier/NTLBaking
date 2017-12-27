@@ -132,14 +132,15 @@ public class StepDetailsFragment extends Fragment {
         if (mExoPlayer == null) {
             // Create an instance of the ExoPlayer.
             LoadControl loadControl = new DefaultLoadControl();
+
             TrackSelection.Factory videoTrackSelectionFactory =
                     new AdaptiveVideoTrackSelection.Factory(bandwidthMeter);
-            TrackSelector trackSelector = new DefaultTrackSelector(videoTrackSelectionFactory);
-            mExoPlayer = ExoPlayerFactory.newSimpleInstance(getContext(), trackSelector, loadControl);
 
+            TrackSelector trackSelector = new DefaultTrackSelector(videoTrackSelectionFactory);
+
+            mExoPlayer = ExoPlayerFactory.newSimpleInstance(getContext(), trackSelector, loadControl);
             mExoPlayerView.requestFocus();
             mExoPlayerView.setPlayer(mExoPlayer);
-
             mExoPlayer.setPlayWhenReady(playWhenReady);
 
             DefaultExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
@@ -156,7 +157,6 @@ public class StepDetailsFragment extends Fragment {
         mExoPlayer.release();
         playWhenReady = mExoPlayer.getPlayWhenReady();
     }
-
 
     @Override
     public void onStart() {
@@ -179,7 +179,5 @@ public class StepDetailsFragment extends Fragment {
             position = mExoPlayer.getCurrentPosition();
             releasePlayer();
         }
-
     }
-
 }

@@ -98,7 +98,6 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyViewHolder
             ButterKnife.bind(this, itemView);
         }
 
-
         void setRecipeName(String recipe_Name) {
             stepName.setText(recipe_Name);
         }

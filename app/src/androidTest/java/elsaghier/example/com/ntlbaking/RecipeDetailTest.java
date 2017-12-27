@@ -23,7 +23,6 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 public class RecipeDetailTest {
 
 
-
     @Rule
     public ActivityTestRule<RecipeDetail> activityTestRule =
             new ActivityTestRule<>(RecipeDetail.class);

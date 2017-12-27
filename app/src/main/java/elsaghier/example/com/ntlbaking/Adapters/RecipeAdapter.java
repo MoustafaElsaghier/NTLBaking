@@ -28,7 +28,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
     private List<ResponseModel> mRecipes;
     private Context context;
 
-
     public RecipeAdapter(Context context, List<ResponseModel> Recipes) {
         this.mRecipes = Recipes;
         this.context = context;

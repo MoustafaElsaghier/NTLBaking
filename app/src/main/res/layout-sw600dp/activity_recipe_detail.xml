@@ -10,8 +10,7 @@
         android:id="@+id/pane_1"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="0.4">
-    </FrameLayout>
+        android:layout_weight="0.4"></FrameLayout>
 
     <FrameLayout
         android:id="@+id/pane_2"
@@ -20,6 +19,5 @@
         android:layout_weight="0.6">
 
     </FrameLayout>
-
 
 </LinearLayout>
