@@ -12,4 +12,5 @@
     <string name="ingredients">Ingredients</string>
     <string name="step_name">Step Name</string>
     <string name="title_activity_recipe_detail">RecipeDetail</string>
+    <string name="previous">Previous</string>
 </resources>
