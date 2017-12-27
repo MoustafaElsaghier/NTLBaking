@@ -57,8 +57,9 @@ public class StepDetailsFragment extends Fragment {
 
     private DataSource.Factory mediaDataSourceFactory;
 
-    final String SELECTED_POSITION = "videoTime";
     final String SELECTED_STATE = "videoState";
+    final String SELECTED_POSITION = "videoTime";
+    final String SELECTED_VIDEO_POSITION = "videopos";
     long position;
     private boolean playWhenReady = true;
 
@@ -69,6 +70,7 @@ public class StepDetailsFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putLong(SELECTED_POSITION, position);
+        outState.putLong(SELECTED_VIDEO_POSITION, pos);
         outState.putBoolean(SELECTED_STATE, playWhenReady);
     }
 
@@ -81,6 +83,7 @@ public class StepDetailsFragment extends Fragment {
         if (savedInstanceState != null) {
             position = savedInstanceState.getLong(SELECTED_POSITION, C.TIME_UNSET);
             playWhenReady = savedInstanceState.getBoolean(SELECTED_STATE);
+            pos = savedInstanceState.getInt(SELECTED_VIDEO_POSITION);
         }
         if (getArguments() != null) {
             pos = getArguments().getInt("pos");
