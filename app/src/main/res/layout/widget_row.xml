@@ -3,8 +3,8 @@
     android:id="@+id/Ingredient_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textAppearance="?android:attr/textAppearanceLarge"
     android:gravity="center_vertical"
-    android:paddingLeft="6dip"
     android:minHeight="?android:attr/listPreferredItemHeight"
-    />
+    android:paddingEnd="@dimen/six_dp"
+    android:paddingStart="@dimen/six_dp"
+    android:textAppearance="?android:attr/textAppearanceLarge" />

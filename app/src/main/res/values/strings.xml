@@ -13,4 +13,5 @@
     <string name="step_name">Step Name</string>
     <string name="title_activity_recipe_detail">RecipeDetail</string>
     <string name="previous">Previous</string>
+    <string name="next">Next</string>
 </resources>
