@@ -17,7 +17,7 @@ public class StepDetails extends AppCompatActivity {
         setContentView(R.layout.activity_step_details);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if (savedInstanceState == null) {
             Bundle b = getIntent().getExtras();
