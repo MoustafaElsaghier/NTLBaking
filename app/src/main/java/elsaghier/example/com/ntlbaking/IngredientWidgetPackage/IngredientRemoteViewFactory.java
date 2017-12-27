@@ -58,7 +58,6 @@ public class IngredientRemoteViewFactory implements RemoteViewsService.RemoteVie
         if (ingredients != null) {
             RemoteViews row = new RemoteViews(mContext.getPackageName(),
                     R.layout.widget_row);
-            ingredients = list.get(i).getIngredients();
 
             String rowData = ingredients.get(i).getIngredient() +
                     "     " +
