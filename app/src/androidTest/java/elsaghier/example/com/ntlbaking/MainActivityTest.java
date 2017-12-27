@@ -44,5 +44,4 @@ public class MainActivityTest {
                 .perform(ViewActions.swipeDown());
         onView(withId(R.id.textView)).check(matches(withText("Ingredients"))).check(matches(isDisplayed()));
     }
-
 }

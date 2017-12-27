@@ -36,13 +36,16 @@
         <service
             android:name=".IngredientWidgetPackage.WidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
+
         <activity
             android:name=".Activities.RecipeDetail"
             android:label="@string/title_activity_recipe_detail"
+            android:parentActivityName=".Activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.StepDetails"
             android:label="@string/title_activity_step_details"
+            android:parentActivityName=".Activities.RecipeDetail"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
