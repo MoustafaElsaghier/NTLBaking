@@ -1,5 +1,6 @@
 package elsaghier.example.com.ntlbaking;
 
+import android.support.test.espresso.action.ViewActions;
 import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -34,10 +35,14 @@ public class MainActivityTest {
     }
 
     @Test
-    public void recyclerClick() {
+    public void recyclerClick() throws InterruptedException {
         onView(withId(R.id.recipe_list))
                 .perform(RecyclerViewActions.actionOnItem(
                         hasDescendant(withText("Cheesecake")), click()));
+        Thread.sleep(2000);
+        onView(withId(R.id.fragmentRecipeId))
+                .perform(ViewActions.swipeDown());
+        onView(withId(R.id.textView)).check(matches(withText("Ingredients"))).check(matches(isDisplayed()));
     }
 
 }
