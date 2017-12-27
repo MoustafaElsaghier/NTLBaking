@@ -107,7 +107,6 @@ public class StepDetailsFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
 
-
                     pos = ((--pos) % RecipeDetailFragment.list.size());
                     mVideoURL = RecipeDetailFragment.list.get(pos).getVideoURL();
                     ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(RecipeDetailFragment.list.get(pos).getShortDescription());
@@ -125,14 +124,12 @@ public class StepDetailsFragment extends Fragment {
     private void mExoPlayerViewInit() {
         bandwidthMeter = new DefaultBandwidthMeter();
         mediaDataSourceFactory = new DefaultDataSourceFactory(getContext(), Util.getUserAgent(getContext(), "mediaPlayerSample"), (TransferListener<? super DataSource>) bandwidthMeter);
-
     }
 
     private void initializePlayer(String videoURL) {
         if (mExoPlayer == null) {
             // Create an instance of the ExoPlayer.
             LoadControl loadControl = new DefaultLoadControl();
-
             TrackSelection.Factory videoTrackSelectionFactory =
                     new AdaptiveVideoTrackSelection.Factory(bandwidthMeter);
 

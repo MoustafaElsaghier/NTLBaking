@@ -65,6 +65,7 @@ public class RecipeDetailFragment extends Fragment {
         ButterKnife.bind(this, v);
         if (model != null)
             if (!model.getName().equals("")) {
+
                 isTablet = getResources().getBoolean(R.bool.isTab);
                 List<IngredientsModel> mIngredientsList = model.getIngredients();
                 recyclerViewLayoutManager = new LinearLayoutManager(getContext());
