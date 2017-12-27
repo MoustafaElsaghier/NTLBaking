@@ -108,7 +108,7 @@ public class StepDetailsFragment extends Fragment {
                 public void onClick(View view) {
 
 
-                    pos = ((--pos) % RecipeDetailFragment.list.size()) + 1;
+                    pos = ((--pos) % RecipeDetailFragment.list.size());
                     mVideoURL = RecipeDetailFragment.list.get(pos).getVideoURL();
                     ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(RecipeDetailFragment.list.get(pos).getShortDescription());
                     mDescription.setText(RecipeDetailFragment.list.get(pos).getDescription());
@@ -155,7 +155,7 @@ public class StepDetailsFragment extends Fragment {
     private void releasePlayer() {
         mExoPlayer.stop();
         mExoPlayer.release();
-        playWhenReady = mExoPlayer.getPlayWhenReady();
+        mExoPlayer = null;
     }
 
     @Override
@@ -177,6 +177,7 @@ public class StepDetailsFragment extends Fragment {
         super.onPause();
         if (mExoPlayer != null) {
             position = mExoPlayer.getCurrentPosition();
+            playWhenReady = mExoPlayer.getPlayWhenReady();
             releasePlayer();
         }
     }
