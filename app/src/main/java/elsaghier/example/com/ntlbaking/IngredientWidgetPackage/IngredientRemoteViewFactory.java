@@ -1,9 +1,7 @@
 package elsaghier.example.com.ntlbaking.IngredientWidgetPackage;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
@@ -23,7 +21,6 @@ public class IngredientRemoteViewFactory implements RemoteViewsService.RemoteVie
     public static final String RECIPE_INGREDIENTS = "RECIPE_INGREDIENTS";
 
     private void readFromSharedPref() {
-
         SharedPreferences setting = mContext.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         recipeName = setting.getString(RECIPE_NAME, "");
         recipeIngredient = setting.getString(RECIPE_INGREDIENTS, "");
@@ -76,16 +73,6 @@ public class IngredientRemoteViewFactory implements RemoteViewsService.RemoteVie
             row.setTextViewText(R.id.appwidget_text, recipeName);
             row.setTextViewText(R.id.Ingredient_item, rowData);
 
-            final Intent fillInIntent = new Intent();
-
-            fillInIntent.setAction(IngredientWidget.ACTION_TOAST);
-
-            final Bundle bundle = new Bundle();
-            bundle.putString(IngredientWidget.EXTRA_STRING,
-                    rowData);
-
-            fillInIntent.putExtras(bundle);
-            row.setOnClickFillInIntent(R.layout.ingredient_widget, fillInIntent);
             return row;
         }
         return null;
