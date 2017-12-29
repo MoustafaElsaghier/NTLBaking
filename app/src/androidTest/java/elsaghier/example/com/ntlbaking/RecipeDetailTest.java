@@ -29,15 +29,9 @@ public class RecipeDetailTest {
 
     @Test
     public void isGradientDisplayed() {
-//        onView(withId(R.id.Ingredients)).check(matches(isDisplayed()));
         onView(withId(R.id.fragmentRecipeId))
                 .perform(ViewActions.swipeDown());
     }
-
-//    @Test
-//    public void checkStepRecyclerAvailability() {
-//        onView(withId(R.id.step_recyc)).check(matches(isDisplayed()));
-//    }
 
     @Test
     public void checkStepItemImageAvailability() {
