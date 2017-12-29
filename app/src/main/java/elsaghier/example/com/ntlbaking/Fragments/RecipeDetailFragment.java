@@ -1,5 +1,6 @@
 package elsaghier.example.com.ntlbaking.Fragments;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,6 +21,8 @@ import elsaghier.example.com.ntlbaking.Models.ResponseModel;
 import elsaghier.example.com.ntlbaking.Models.StepModel;
 import elsaghier.example.com.ntlbaking.R;
 
+import static android.content.Context.MODE_PRIVATE;
+
 /**
  * A placeholder fragment containing a simple view.
  */
@@ -32,9 +35,13 @@ public class RecipeDetailFragment extends Fragment {
     RecipeInterface recipeInterFace;
     boolean isTablet;
     public static int moveTo;
+    List<IngredientsModel> mIngredientsList;
 
     RecyclerView.LayoutManager recyclerViewLayoutManager;
     StepsAdapter stepsAdapter;
+    public static final String PREFS_NAME = "RECIPE_ITEM";
+    public static final String RECIPE_NAME = "RECIPE_NAME";
+    public static final String RECIPE_INGREDIENTS = "RECIPE_INGREDIENTS";
 
     public static RecipeDetailFragment newInstance(RecipeInterface recipeInterFace) {
         RecipeDetailFragment f = new RecipeDetailFragment();
@@ -67,14 +74,15 @@ public class RecipeDetailFragment extends Fragment {
             if (!model.getName().equals("")) {
 
                 isTablet = getResources().getBoolean(R.bool.isTab);
-                List<IngredientsModel> mIngredientsList = model.getIngredients();
+                mIngredientsList = model.getIngredients();
                 recyclerViewLayoutManager = new LinearLayoutManager(getContext());
                 mStepRecycler.setLayoutManager(recyclerViewLayoutManager);
                 list = model.getSteps();
+
                 stepsAdapter = new StepsAdapter(getContext(), list, isTablet);
                 StringBuilder IngredientsData = new StringBuilder();
                 mStepRecycler.setAdapter(stepsAdapter);
-//            ((RecipeDetails) getActivity()).setActionBarTittle(model.getName());
+                saveToSharedPref(model.getName(), mIngredientsList);
                 IngredientsData.append("\n");
                 for (IngredientsModel item : mIngredientsList) {
                     IngredientsData.append(item.getIngredient()).append(" : \t ")
@@ -87,8 +95,31 @@ public class RecipeDetailFragment extends Fragment {
 
         return v;
     }
-    private void saveToSharedPref(){
-//        SharedPreferences.Editor preferences = SharedPreferences.Editor;
+
+    private void saveToSharedPref(String recipeName, List<IngredientsModel> ingrediants) {
+
+        SharedPreferences settings = getContext().getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+
+        // Writing data to SharedPreferences
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString(RECIPE_NAME, recipeName);
+
+        String sIngredient = convertToString(ingrediants);
+        editor.putString(RECIPE_INGREDIENTS, sIngredient);
+
+        editor.putString("key", "some value");
+        editor.apply();
+    }
+
+    private String convertToString(List<IngredientsModel> list) {
+        StringBuilder res = new StringBuilder();
+        for (IngredientsModel item : mIngredientsList) {
+            res.append(item.getIngredient()).append(" :   ")
+                    .append(item.getQuantity()).append(" ")
+                    .append(item.getMeasure()).
+                    append("#");
+        }
+        return res.toString();
     }
 
 }
