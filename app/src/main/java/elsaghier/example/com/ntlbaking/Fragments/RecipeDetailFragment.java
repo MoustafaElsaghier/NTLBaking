@@ -61,7 +61,7 @@ public class RecipeDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_recipe_detail, container, false);
-//        model = (ResponseModel) getArguments().get("model");
+
         ButterKnife.bind(this, v);
         if (model != null)
             if (!model.getName().equals("")) {
@@ -86,6 +86,9 @@ public class RecipeDetailFragment extends Fragment {
             }
 
         return v;
+    }
+    private void saveToSharedPref(){
+//        SharedPreferences.Editor preferences = SharedPreferences.Editor;
     }
 
 }
