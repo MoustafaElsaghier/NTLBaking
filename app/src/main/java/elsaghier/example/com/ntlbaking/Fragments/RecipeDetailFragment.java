@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import elsaghier.example.com.ntlbaking.Adapters.StepsAdapter;
 import elsaghier.example.com.ntlbaking.IngredientWidgetPackage.IngredientRemoteViewFactory;
+import elsaghier.example.com.ntlbaking.IngredientWidgetPackage.WidgetService;
 import elsaghier.example.com.ntlbaking.Models.IngredientsModel;
 import elsaghier.example.com.ntlbaking.Models.ResponseModel;
 import elsaghier.example.com.ntlbaking.Models.StepModel;
@@ -58,7 +60,7 @@ public class RecipeDetailFragment extends Fragment {
 
         ButterKnife.bind(this, v);
         if (model != null)
-            if (!model.getName().equals("")) {
+            if (!TextUtils.isEmpty(model.getName())) {
 
                 isTablet = getResources().getBoolean(R.bool.isTab);
                 mIngredientsList = model.getIngredients();
@@ -70,6 +72,8 @@ public class RecipeDetailFragment extends Fragment {
                 StringBuilder IngredientsData = new StringBuilder();
                 mStepRecycler.setAdapter(stepsAdapter);
                 saveToSharedPref(model.getName(), mIngredientsList);
+                WidgetService m = new WidgetService();
+                m.onGetViewFactory(getActivity().getIntent());
                 IngredientsData.append("\n");
                 for (IngredientsModel item : mIngredientsList) {
                     IngredientsData.append(item.getIngredient()).append(" : \t ")

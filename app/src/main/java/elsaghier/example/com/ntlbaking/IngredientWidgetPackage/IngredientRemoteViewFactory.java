@@ -15,14 +15,13 @@ import elsaghier.example.com.ntlbaking.R;
 public class IngredientRemoteViewFactory implements RemoteViewsService.RemoteViewsFactory {
     private Context mContext = null;
     private List<String> ingredients = new ArrayList<>();
-    private String recipeName, recipeIngredient;
+    private String  recipeIngredient;
     public static final String PREFS_NAME = "RECIPE_ITEM";
     public static final String RECIPE_NAME = "RECIPE_NAME";
     public static final String RECIPE_INGREDIENTS = "RECIPE_INGREDIENTS";
 
     private void readFromSharedPref() {
         SharedPreferences setting = mContext.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        recipeName = setting.getString(RECIPE_NAME, "");
         recipeIngredient = setting.getString(RECIPE_INGREDIENTS, "");
     }
 
@@ -70,7 +69,6 @@ public class IngredientRemoteViewFactory implements RemoteViewsService.RemoteVie
                     R.layout.widget_row);
 
             String rowData = ingredients.get(i);
-            row.setTextViewText(R.id.appwidget_text, recipeName);
             row.setTextViewText(R.id.Ingredient_item, rowData);
 
             return row;

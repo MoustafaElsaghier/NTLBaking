@@ -1,6 +1,10 @@
 package elsaghier.example.com.ntlbaking.Activities;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -43,6 +47,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private boolean isConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null
+                && activeNetwork.isConnectedOrConnecting();
+        return isConnected;
+    }
+
     private void init() {
         ButterKnife.bind(this);
         isTablet = getResources().getBoolean(R.bool.isTab);
@@ -53,20 +65,23 @@ public class MainActivity extends AppCompatActivity {
             recyclerViewLayoutManager = new LinearLayoutManager(this);
         mRecipeRecycler.setLayoutManager(recyclerViewLayoutManager);
         responseInterFace = ApiClient.getClient().create(ResponseInterFace.class);
-        call = responseInterFace.getRecipes();
-        call.enqueue(new Callback<List<ResponseModel>>() {
-            @Override
-            public void onResponse(Call<List<ResponseModel>> call, Response<List<ResponseModel>> response) {
-                list = response.body();
-                recipeAdapter = new RecipeAdapter(MainActivity.this, list);
-                mRecipeRecycler.setAdapter(recipeAdapter);
-            }
+        if (isConnected()) {
+            call = responseInterFace.getRecipes();
+            call.enqueue(new Callback<List<ResponseModel>>() {
+                @Override
+                public void onResponse(Call<List<ResponseModel>> call, Response<List<ResponseModel>> response) {
+                    list = response.body();
+                    recipeAdapter = new RecipeAdapter(MainActivity.this, list);
+                    mRecipeRecycler.setAdapter(recipeAdapter);
+                }
 
-            @Override
-            public void onFailure(Call<List<ResponseModel>> call, Throwable t) {
-                System.out.println();
-                Log.e("NetworkFailed", t.getCause().toString());
-            }
-        });
+                @Override
+                public void onFailure(Call<List<ResponseModel>> call, Throwable t) {
+                    System.out.println();
+                    Log.e("NetworkFailed", t.getCause().toString());
+                }
+            });
+        } else
+            Snackbar.make(getCurrentFocus(), "Error in Network", Snackbar.LENGTH_LONG);
     }
 }
