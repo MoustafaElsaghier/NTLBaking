@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import elsaghier.example.com.ntlbaking.Fragments.RecipeDetailFragment;
 import elsaghier.example.com.ntlbaking.R;
 
 
@@ -19,14 +18,15 @@ public class IngredientRemoteViewFactory implements RemoteViewsService.RemoteVie
     private Context mContext = null;
     private List<String> ingredients = new ArrayList<>();
     private String recipeName, recipeIngredient;
+    public static final String PREFS_NAME = "RECIPE_ITEM";
+    public static final String RECIPE_NAME = "RECIPE_NAME";
+    public static final String RECIPE_INGREDIENTS = "RECIPE_INGREDIENTS";
 
     private void readFromSharedPref() {
 
-        SharedPreferences setting = mContext.getSharedPreferences(RecipeDetailFragment.PREFS_NAME, Context.MODE_PRIVATE);
-        if (setting.contains(RecipeDetailFragment.PREFS_NAME)) {
-            recipeName = setting.getString(RecipeDetailFragment.RECIPE_NAME, "");
-            recipeIngredient = setting.getString(RecipeDetailFragment.RECIPE_INGREDIENTS, "");
-        }
+        SharedPreferences setting = mContext.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        recipeName = setting.getString(RECIPE_NAME, "");
+        recipeIngredient = setting.getString(RECIPE_INGREDIENTS, "");
     }
 
     private List<String> getIngredientsList(String s) {

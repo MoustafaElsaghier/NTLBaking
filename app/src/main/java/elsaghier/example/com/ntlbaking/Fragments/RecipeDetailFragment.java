@@ -15,6 +15,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import elsaghier.example.com.ntlbaking.Adapters.StepsAdapter;
+import elsaghier.example.com.ntlbaking.IngredientWidgetPackage.IngredientRemoteViewFactory;
 import elsaghier.example.com.ntlbaking.InterFaces.RecipeInterface;
 import elsaghier.example.com.ntlbaking.Models.IngredientsModel;
 import elsaghier.example.com.ntlbaking.Models.ResponseModel;
@@ -39,9 +40,6 @@ public class RecipeDetailFragment extends Fragment {
 
     RecyclerView.LayoutManager recyclerViewLayoutManager;
     StepsAdapter stepsAdapter;
-    public static final String PREFS_NAME = "RECIPE_ITEM";
-    public static final String RECIPE_NAME = "RECIPE_NAME";
-    public static final String RECIPE_INGREDIENTS = "RECIPE_INGREDIENTS";
 
     public static RecipeDetailFragment newInstance(RecipeInterface recipeInterFace) {
         RecipeDetailFragment f = new RecipeDetailFragment();
@@ -98,14 +96,14 @@ public class RecipeDetailFragment extends Fragment {
 
     private void saveToSharedPref(String recipeName, List<IngredientsModel> ingrediants) {
 
-        SharedPreferences settings = getContext().getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        SharedPreferences settings = getContext().getSharedPreferences(IngredientRemoteViewFactory.PREFS_NAME, MODE_PRIVATE);
 
         // Writing data to SharedPreferences
         SharedPreferences.Editor editor = settings.edit();
-        editor.putString(RECIPE_NAME, recipeName);
+        editor.putString(IngredientRemoteViewFactory.RECIPE_NAME, recipeName);
 
         String sIngredient = convertToString(ingrediants);
-        editor.putString(RECIPE_INGREDIENTS, sIngredient);
+        editor.putString(IngredientRemoteViewFactory.RECIPE_INGREDIENTS, sIngredient);
 
         editor.putString("key", "some value");
         editor.apply();
