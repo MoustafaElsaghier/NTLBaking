@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -16,7 +15,6 @@ import butterknife.ButterKnife;
 import elsaghier.example.com.ntlbaking.Adapters.RecipeAdapter;
 import elsaghier.example.com.ntlbaking.ApiWork.ApiClient;
 import elsaghier.example.com.ntlbaking.InterFaces.ResponseInterFace;
-import elsaghier.example.com.ntlbaking.Models.IngredientsModel;
 import elsaghier.example.com.ntlbaking.Models.ResponseModel;
 import elsaghier.example.com.ntlbaking.R;
 import retrofit2.Call;
@@ -34,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView mRecipeRecycler;
     retrofit2.Call<List<ResponseModel>> call;
     boolean isTablet;
-    public static ArrayList<IngredientsModel> ingredients;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

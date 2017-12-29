@@ -69,7 +69,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
         MyViewHolder(View v) {
             super(v);
             ButterKnife.bind(this, itemView);
-
         }
 
         void setRecipeName(String recipe_Name) {

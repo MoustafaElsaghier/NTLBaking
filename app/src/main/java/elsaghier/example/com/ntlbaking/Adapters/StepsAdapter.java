@@ -85,7 +85,6 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyViewHolder
         return mSteps.size();
     }
 
-
     class MyViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.step_image)

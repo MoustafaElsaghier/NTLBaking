@@ -3,6 +3,7 @@ package elsaghier.example.com.ntlbaking.Fragments;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,7 +17,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import elsaghier.example.com.ntlbaking.Adapters.StepsAdapter;
 import elsaghier.example.com.ntlbaking.IngredientWidgetPackage.IngredientRemoteViewFactory;
-import elsaghier.example.com.ntlbaking.InterFaces.RecipeInterface;
 import elsaghier.example.com.ntlbaking.Models.IngredientsModel;
 import elsaghier.example.com.ntlbaking.Models.ResponseModel;
 import elsaghier.example.com.ntlbaking.Models.StepModel;
@@ -32,8 +32,7 @@ public class RecipeDetailFragment extends Fragment {
     TextView mIngredients;
     @BindView(R.id.step_recyc)
     RecyclerView mStepRecycler;
-    public static List<StepModel> list;
-    RecipeInterface recipeInterFace;
+    public static List<StepModel> modelList;
     boolean isTablet;
     public static int moveTo;
     List<IngredientsModel> mIngredientsList;
@@ -41,20 +40,10 @@ public class RecipeDetailFragment extends Fragment {
     RecyclerView.LayoutManager recyclerViewLayoutManager;
     StepsAdapter stepsAdapter;
 
-    public static RecipeDetailFragment newInstance(RecipeInterface recipeInterFace) {
-        RecipeDetailFragment f = new RecipeDetailFragment();
-        f.setRecipeInterFace(recipeInterFace);
-        return f;
-    }
-
     public RecipeDetailFragment() {
     }
 
     public static ResponseModel model;
-
-    public void setRecipeInterFace(RecipeInterface recipeInterFace) {
-        this.recipeInterFace = recipeInterFace;
-    }
 
     @Override
     public void onResume() {
@@ -75,9 +64,9 @@ public class RecipeDetailFragment extends Fragment {
                 mIngredientsList = model.getIngredients();
                 recyclerViewLayoutManager = new LinearLayoutManager(getContext());
                 mStepRecycler.setLayoutManager(recyclerViewLayoutManager);
-                list = model.getSteps();
-
-                stepsAdapter = new StepsAdapter(getContext(), list, isTablet);
+                modelList = model.getSteps();
+                ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(model.getName());
+                stepsAdapter = new StepsAdapter(getContext(), modelList, isTablet);
                 StringBuilder IngredientsData = new StringBuilder();
                 mStepRecycler.setAdapter(stepsAdapter);
                 saveToSharedPref(model.getName(), mIngredientsList);

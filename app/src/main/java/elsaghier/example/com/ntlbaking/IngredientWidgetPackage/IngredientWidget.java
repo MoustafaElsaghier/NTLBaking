@@ -34,7 +34,7 @@ public class IngredientWidget extends AppWidgetProvider {
         for (int widgetId : appWidgetIds) {
             RemoteViews mView = initViews(context, appWidgetManager, widgetId);
 
-            // Adding collection list item handler
+            // Adding collection modelList item handler
             final Intent onItemClick = new Intent(context, IngredientWidget.class);
             onItemClick.setAction(ACTION_TOAST);
             onItemClick.setData(Uri.parse(onItemClick

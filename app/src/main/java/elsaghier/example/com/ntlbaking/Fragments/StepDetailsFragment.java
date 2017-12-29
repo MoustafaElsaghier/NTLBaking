@@ -38,8 +38,6 @@ import elsaghier.example.com.ntlbaking.R;
  * A placeholder fragment containing a simple view.
  */
 public class StepDetailsFragment extends Fragment {
-    public static final String ARG_ITEM_ID = "item_id";
-
 
     @BindView(R.id.step_description)
     TextView mDescription;
@@ -87,17 +85,13 @@ public class StepDetailsFragment extends Fragment {
         }
         if (getArguments() != null) {
             pos = getArguments().getInt("pos");
-            mVideoURL = RecipeDetailFragment.list.get(pos).getVideoURL();
-            mDescription.setText(RecipeDetailFragment.list.get(pos).getDescription());
+            changeURLandDescription();
             // Next icon click
             mNext.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
-                    pos = ((++pos) % RecipeDetailFragment.list.size());
-                    mVideoURL = RecipeDetailFragment.list.get(pos).getVideoURL();
-                    mDescription.setText(RecipeDetailFragment.list.get(pos).getDescription());
-                    ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(RecipeDetailFragment.list.get(pos).getShortDescription());
+                    pos = ((++pos) % RecipeDetailFragment.modelList.size());
+                    changeURLandDescription();
                     releasePlayer();
                     initializePlayer(mVideoURL);
                 }
@@ -106,11 +100,8 @@ public class StepDetailsFragment extends Fragment {
             mPrev.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
-                    pos = ((--pos) % RecipeDetailFragment.list.size());
-                    mVideoURL = RecipeDetailFragment.list.get(pos).getVideoURL();
-                    ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(RecipeDetailFragment.list.get(pos).getShortDescription());
-                    mDescription.setText(RecipeDetailFragment.list.get(pos).getDescription());
+                    pos = ((--pos) % RecipeDetailFragment.modelList.size());
+                    changeURLandDescription();
                     releasePlayer();
                     initializePlayer(mVideoURL);
                 }
@@ -119,6 +110,13 @@ public class StepDetailsFragment extends Fragment {
             initializePlayer(mVideoURL);
         }
         return v;
+    }
+
+    private void changeURLandDescription() {
+        mVideoURL = RecipeDetailFragment.modelList.get(pos).getVideoURL();
+        mDescription.setText(RecipeDetailFragment.modelList.get(pos).getDescription());
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(RecipeDetailFragment.modelList.get(pos).getShortDescription());
+
     }
 
     private void mExoPlayerViewInit() {
@@ -158,7 +156,7 @@ public class StepDetailsFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        mVideoURL = RecipeDetailFragment.list.get(pos).getVideoURL();
+        mVideoURL = RecipeDetailFragment.modelList.get(pos).getVideoURL();
         initializePlayer(mVideoURL);
     }
 
